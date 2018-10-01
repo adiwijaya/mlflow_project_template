@@ -1,0 +1,9 @@
+name: tutorial
+
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    parameters:
+      max_runtime_secs: {type: int, default: 10}
+    command: "python model_train.py {max_runtime_secs}"
