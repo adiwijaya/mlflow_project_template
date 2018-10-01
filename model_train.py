@@ -1,35 +1,49 @@
-# Import various libraries including matplotlib, sklearn, mlflow
-import os
-import warnings
+# IMPORT
+
 import sys
+from util import model_experiment, save_model,load_csv_to_pandas
+import h2o
+import mlflow
 
-import pandas as pd
-import numpy as np
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
-from sklearn.metrics import accuracy_score,auc, average_precision_score, f1_score, roc_auc_score
-from sklearn.model_selection import train_test_split
-from sklearn import datasets
 
-from util import model_train
+# STATIC VARIABLES
+model_type = "classification" # classification / regression
+target_column = "TARGET"
+input_csv_path = "/home/mapr/dataset/bank-class.csv"
+delimiter_symbol = ","
+max_runtime_secs = "120"
+model_export_name = "/home/mapr/bank_model"
 
+
+def init_mlflow():
+    # Set this variable to your MLflow server's DNS name
+    mlflow_server = '178.128.58.69'
+
+    # Tracking URI
+    mlflow_tracking_uri = 'http://' + mlflow_server + ':5000'
+    print("MLflow Tracking URI: %s" % (mlflow_tracking_uri))
+
+    mlflow.set_tracking_uri(mlflow_tracking_uri)
 
 
 if __name__ == "__main__":
-    warnings.filterwarnings("ignore")
-    np.random.seed(40)
 
-    # Read the wine-quality csv file (make sure you're running this from the root of MLflow!)
-    # Load Diabetes datasets
-    diabetes = datasets.load_diabetes()
-    X = diabetes.data
-    y = diabetes.target
+    init_mlflow()
+    h2o.init()
 
-    # Create pandas DataFrame for sklearn ElasticNet linear_model
-    Y = np.array([y]).transpose()
-    d = np.concatenate((X, Y), axis=1)
-    cols = ['age', 'sex', 'bmi', 'bp', 's1', 's2', 's3', 's4', 's5', 's6', 'progression']
-    data = pd.DataFrame(d, columns=cols)
+    # VARIABLE INITIATION
+    target_column = str(sys.argv[1]) if len(sys.argv) > 1 else target_column
+    input_csv_path = str(sys.argv[2]) if len(sys.argv) > 1 else input_csv_path
+    delimiter_symbol = str(sys.argv[3]) if len(sys.argv) > 1 else delimiter_symbol
+    max_runtime_secs = int(sys.argv[4]) if len(sys.argv) > 1 else max_runtime_secs
+    model_export_name = str(sys.argv[5]) if len(sys.argv) > 1 else model_export_name
+
+    # LOAD DATA
+    data = load_csv_to_pandas(input_csv_path, delimiter_symbol)
 
 
-    #############################################################
-    model_train(data)
+    # MODEL EXPERIMENT
+    model = model_experiment(h2o, mlflow, data, max_runtime_secs)
+
+    # MODEL EXPORT
+    save_model(model, model_export_name)
