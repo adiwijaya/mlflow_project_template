@@ -9,7 +9,7 @@ import mlflow
 # STATIC VARIABLES
 model_type = "classification" # classification / regression
 target_column = "TARGET"
-input_csv_path = "/home/mapr/dataset/bank-class.csv"
+input_csv_path = "/home/mapr/dataset/bank-class-sample.csv"
 delimiter_symbol = ","
 max_runtime_secs = "120"
 model_export_name = "/home/mapr/bank_model"
