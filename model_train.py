@@ -12,7 +12,7 @@ target_column = "TARGET"
 input_csv_path = "/home/mapr/dataset/bank-class-sample.csv"
 delimiter_symbol = ";"
 max_runtime_secs = 10
-model_export_name = "/home/mapr/bank_model"
+model_export_name = "/home/mapr/bank_model_sample"
 
 
 def init_mlflow():
@@ -45,4 +45,4 @@ if __name__ == "__main__":
     model = model_experiment(h2o, mlflow, data,target_column, max_runtime_secs)
 
     # MODEL EXPORT
-    save_model(model, model_export_name)
+    save_model(model, save_directory=model_export_name)
