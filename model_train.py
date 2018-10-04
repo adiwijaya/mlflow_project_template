@@ -36,7 +36,7 @@ def init_mlflow():
 
 if __name__ == "__main__":
 
-    init_mlflow()
+    #init_mlflow()
     h2o.init()
 
     # VARIABLE INITIATION
