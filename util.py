@@ -67,4 +67,4 @@ def model_experiment(h2o, mlflow, data, target_column, max_runtime_secs = 100):
 def save_model(model, mlflow, save_directory):
 
     # Log artifacts (output files)
-    #mlflow.h2o.save_model(model, save_directory)
+    mlflow.h2o.save_model(model, save_directory)
