@@ -43,7 +43,7 @@ if __name__ == "__main__":
 
 
     # MODEL EXPERIMENT
-    model = model_experiment(h2o, mlflow, data, max_runtime_secs)
+    model = model_experiment(h2o, mlflow, data,target_column, max_runtime_secs)
 
     # MODEL EXPORT
     save_model(model, model_export_name)
