@@ -4,7 +4,7 @@ import sys
 from util import model_experiment, save_model,load_csv_to_pandas
 import h2o
 import mlflow
-
+import mlflow.h2o
 
 # STATIC VARIABLES
 model_type = "classification" # classification / regression
@@ -45,4 +45,4 @@ if __name__ == "__main__":
     model = model_experiment(h2o, mlflow, data,target_column, max_runtime_secs)
 
     # MODEL EXPORT
-    save_model(model, save_directory=model_export_name, mlflow=mlflow)
+    save_model(model, save_directory=model_export_name, mlflow=mlflow.h2o)
