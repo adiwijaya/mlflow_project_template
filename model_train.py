@@ -10,7 +10,7 @@ import mlflow
 model_type = "classification" # classification / regression
 target_column = "TARGET"
 input_csv_path = "/home/mapr/dataset/bank-class-sample.csv"
-delimiter_symbol = ","
+delimiter_symbol = ";"
 max_runtime_secs = "10"
 model_export_name = "/home/mapr/bank_model"
 
