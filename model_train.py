@@ -41,9 +41,8 @@ if __name__ == "__main__":
     # LOAD DATA
     data = load_csv_to_pandas(input_csv_path, delimiter_symbol)
 
-
     # MODEL EXPERIMENT
     model = model_experiment(h2o, mlflow, data,target_column, max_runtime_secs)
 
     # MODEL EXPORT
-    save_model(model, model_export_name)
+    #save_model(model, model_export_name)
