@@ -63,8 +63,19 @@ def model_experiment(h2o, mlflow, data, target_column, max_runtime_secs = 100):
 
         return best_model
 
+def remove_folder_linux(dirpath):
+    import shutil
+    import os
+
+    if os.path.exists(dirpath) and os.path.isdir(dirpath):
+        shutil.rmtree(dirpath)
+
+    print("Folder exists. Removing previous model")
 
 def save_model(model, mlflow, save_directory):
 
     # Log artifacts (output files)
+    remove_folder_linux(save_directory)
     mlflow.save_model(model, save_directory)
+
+
