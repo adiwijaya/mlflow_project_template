@@ -1,7 +1,7 @@
 # IMPORT
 
 import sys
-from util import model_experiment, save_model,load_csv_to_pandas
+import util
 import h2o
 import mlflow
 import mlflow.h2o
@@ -16,6 +16,7 @@ export_path = "/opt/mlflow/model_result/bank_class_sample"
 
 
 def init_mlflow():
+    """This is for starting communication with tracking server"""
     # Set this variable to your MLflow server's DNS name
     mlflow_server = '178.128.106.223'
 
@@ -39,10 +40,10 @@ if __name__ == "__main__":
     export_path = str(sys.argv[5]) if len(sys.argv) > 1 else export_path
 
     # LOAD DATA
-    data = load_csv_to_pandas(csv_path, delimiter)
+    data = util.load_csv_to_pandas(csv_path, delimiter)
 
     # MODEL EXPERIMENT
-    model = model_experiment(h2o, mlflow, data,target, run_time)
+    model = util.create_model(h2o, mlflow, data,target, run_time)
 
     # MODEL EXPORT
-    save_model(model, save_directory=export_path, mlflow=mlflow.h2o)
+    util.save_model(model, save_directory=export_path, mlflow=mlflow.h2o)
