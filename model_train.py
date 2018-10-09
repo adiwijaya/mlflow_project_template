@@ -8,11 +8,11 @@ import mlflow.h2o
 
 # STATIC VARIABLES
 model_type = "classification" # classification / regression
-target_column = "TARGET"
-input_csv_path = "/home/mapr/dataset/bank-class-sample.csv"
-delimiter_symbol = ";"
-max_runtime_secs = 10
-model_export_name = "/opt/mlflow/model_result/bank_class_sample"
+target = "TARGET"
+csv_path = "/home/mapr/dataset/bank-class-sample.csv"
+delimiter = ";"
+run_time = 10
+export_path = "/opt/mlflow/model_result/bank_class_sample"
 
 
 def init_mlflow():
@@ -32,17 +32,17 @@ if __name__ == "__main__":
     h2o.init()
 
     # VARIABLE INITIATION
-    target_column = str(sys.argv[1]) if len(sys.argv) > 1 else target_column
-    input_csv_path = str(sys.argv[2]) if len(sys.argv) > 1 else input_csv_path
-    #delimiter_symbol = str(sys.argv[3]) if len(sys.argv) > 1 else delimiter_symbol
-    #max_runtime_secs = int(sys.argv[4]) if len(sys.argv) > 1 else max_runtime_secs
-    #model_export_name = str(sys.argv[5]) if len(sys.argv) > 1 else model_export_name
+    target = str(sys.argv[1]) if len(sys.argv) > 1 else target
+    csv_path = str(sys.argv[2]) if len(sys.argv) > 1 else csv_path
+    delimiter = str(sys.argv[3]) if len(sys.argv) > 1 else delimiter
+    run_time = int(sys.argv[4]) if len(sys.argv) > 1 else run_time
+    export_path = str(sys.argv[5]) if len(sys.argv) > 1 else export_path
 
     # LOAD DATA
-    data = load_csv_to_pandas(input_csv_path, delimiter_symbol)
+    data = load_csv_to_pandas(csv_path, delimiter)
 
     # MODEL EXPERIMENT
-    model = model_experiment(h2o, mlflow, data,target_column, max_runtime_secs)
+    model = model_experiment(h2o, mlflow, data,target, run_time)
 
     # MODEL EXPORT
-    save_model(model, save_directory=model_export_name, mlflow=mlflow.h2o)
+    save_model(model, save_directory=export_path, mlflow=mlflow.h2o)

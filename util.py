@@ -22,10 +22,10 @@ def load_csv_to_pandas(path, delimiter = ';' ):
     return data_pandas
 
 
-def model_experiment(h2o, mlflow, data, target_column, max_runtime_secs = 100):
+def model_experiment(h2o, mlflow, data, target, run_time = 100):
     from h2o.automl import H2OAutoML
 
-    response = target_column
+    response = target
 
     # Split the data into training and test sets. (0.75, 0.25) split.
     train, test = train_test_split(data)
@@ -45,7 +45,7 @@ def model_experiment(h2o, mlflow, data, target_column, max_runtime_secs = 100):
 
     # Start an MLflow run; the "with" keyword ensures we'll close the run even if this cell crashes
     with mlflow.start_run():
-        aml = H2OAutoML(max_runtime_secs=max_runtime_secs, balance_classes=True)
+        aml = H2OAutoML(max_runtime_secs=run_time, balance_classes=True)
         aml.train(x=train_x, y=response, training_frame=htrain, validation_frame=htest)
 
         result_prediction = aml.predict(htest)
