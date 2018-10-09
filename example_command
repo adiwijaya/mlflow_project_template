@@ -18,4 +18,4 @@ MLFLOW PREDICT MODEL FROM CSV FILE
 Format :
 mlflow pyfunc serve -m [model root directory] -i [csv file to predict]
 Example :
-mlflow pyfunc predict -m "/opt/mlflow/model_result/bank_class_sample" -i bank-class-sample-testing.csv
+mlflow pyfunc predict -m "/opt/mlflow/model_result/bank_class_sample" -i "/home/mapr/dataset/bank-class-sample-testing.csv"
