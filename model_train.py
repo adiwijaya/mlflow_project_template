@@ -17,7 +17,7 @@ model_export_name = "/home/mapr/etc/mlflow/model_result/bank_class_sample"
 
 def init_mlflow():
     # Set this variable to your MLflow server's DNS name
-    mlflow_server = '178.128.58.69'
+    mlflow_server = '178.128.106.223'
 
     # Tracking URI
     mlflow_tracking_uri = 'http://' + mlflow_server + ':5000'
