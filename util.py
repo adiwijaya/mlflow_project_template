@@ -58,8 +58,8 @@ def model_experiment(h2o, mlflow, data, target_column, max_runtime_secs = 100):
         best_model = aml.leader
 
         # Log mlflow attributes for mlflow UI
-        mlflow.log_param("max_runtime_secs", max_runtime_secs)
-        mlflow.log_metric("accuracy_score", accuracy_score_metrics)
+        #mlflow.log_param("max_runtime_secs", max_runtime_secs)
+        #mlflow.log_metric("accuracy_score", accuracy_score_metrics)
 
         return best_model
 
