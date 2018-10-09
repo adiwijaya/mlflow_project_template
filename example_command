@@ -1,19 +1,18 @@
-MLFLOW CREATE MODEL
+I. MLFLOW CREATE MODEL
 
 Format :
 mlflow run [git repo link] -P [parameters]
 Example :
 mlflow run https://github.com/adiwijaya/mlflow_project_template -P csv_path="/home/mapr/dataset/bank-class-sample.csv" -P target="TARGET" -P export_path="/opt/mlflow/model_result/bank_class_sample" -P delimiter=";" -P run_time=20
 
-MLFLOW SERVE MODEL AS API
+II. MLFLOW SERVE MODEL AS API
 
 Format :
 mlflow pyfunc serve -m [model root directory] --host [host] --port [port]
 Example :
 mlflow pyfunc serve -m "/opt/mlflow/model_result/bank_class_sample" --host 159.65.142.240 --port 6000
 
-
-MLFLOW PREDICT MODEL FROM CSV FILE
+III. MLFLOW PREDICT MODEL FROM CSV FILE
 
 Format :
 mlflow pyfunc serve -m [model root directory] -i [csv file to predict]
