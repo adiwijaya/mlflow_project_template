@@ -60,6 +60,7 @@ def create_model(h2o, mlflow, data, target, run_time = 100):
 
         return best_model
 
+
 def evaluate_model_accuracy(model, test_data, test_target, h2o):
     # Model Predict Test
     result_prediction = model.predict(test_data)
@@ -70,6 +71,7 @@ def evaluate_model_accuracy(model, test_data, test_target, h2o):
 
     # Print out ElasticNet model metrics
     print("accuracy_score: %s" % accuracy_score_metrics)
+
 
 def remove_folder_linux(dirpath):
     import shutil
