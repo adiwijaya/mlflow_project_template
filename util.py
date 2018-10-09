@@ -78,7 +78,7 @@ def save_model(model, mlflow, save_directory):
 
     # Log artifacts (output files)
     remove_folder_linux(save_directory)
-    mlflow.log_model(model, "model_bank_class")
+    #mlflow.log_model(model, "model_bank_class")
     mlflow.save_model(model, save_directory)
 
 
