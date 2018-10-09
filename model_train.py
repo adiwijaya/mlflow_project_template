@@ -12,7 +12,7 @@ target_column = "TARGET"
 input_csv_path = "/home/mapr/dataset/bank-class-sample.csv"
 delimiter_symbol = ";"
 max_runtime_secs = 10
-model_export_name = "/home/mapr/etc/mlflow/model_result/bank_class_sample"
+model_export_name = "/opt/mlflow/model_result/bank_class_sample"
 
 
 def init_mlflow():
