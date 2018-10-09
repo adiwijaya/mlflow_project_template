@@ -6,4 +6,5 @@ entry_points:
   main:
     parameters:
       target_column: {type: String, default: "target"}
-    command: "python model_train.py {target_column}"
+      input_csv_path: {type: String}
+    command: "python model_train.py {target_column,input_csv_path}"

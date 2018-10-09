@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
     # VARIABLE INITIATION
     target_column = str(sys.argv[1]) if len(sys.argv) > 1 else target_column
-    #input_csv_path = str(sys.argv[2]) if len(sys.argv) > 1 else input_csv_path
+    input_csv_path = str(sys.argv[2]) if len(sys.argv) > 1 else input_csv_path
     #delimiter_symbol = str(sys.argv[3]) if len(sys.argv) > 1 else delimiter_symbol
     #max_runtime_secs = int(sys.argv[4]) if len(sys.argv) > 1 else max_runtime_secs
     #model_export_name = str(sys.argv[5]) if len(sys.argv) > 1 else model_export_name
